@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juliensarda <juliensarda@student.42.fr>    +#+  +:+       +#+         #
+#    By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 19:25:54 by juliensarda       #+#    #+#              #
-#    Updated: 2023/12/07 19:34:53 by juliensarda      ###   ########.fr        #
+#    Updated: 2023/12/08 15:52:15 by jsarda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,13 @@ $(MLX_LIB):
 
 clean:
 	@make clean -C $(LIBFT_DIR)
+	@make clean -C $(MLX_DIR)
 	rm -f $(OBJS)
 
 fclean: clean
 	@make fclean -C $(LIBFT_DIR)
+	@make fclean -C $(MLX_DIR)
 	rm -f $(NAME)
-	rm -f $(MLX_LIB)
 
 re: fclean all
 
