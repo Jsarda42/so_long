@@ -6,7 +6,7 @@
 /*   By: juliensarda <juliensarda@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:40:12 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/10 11:46:12 by juliensarda      ###   ########.fr       */
+/*   Updated: 2023/12/10 12:20:21 by juliensarda      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,6 @@
 #include <fcntl.h>
 
 # define WALL_XPM	"../assets/wall.xpm"
-# define FLOOR_XPM	"../texture/floor.xpm"
-# define COINS_XPM	"../texture/coins.xpm"
-# define EXIT_OPEN_XPM	"../texute/exit_open.xpm"
-# define EXIT_CLOSE_XPM	"../texute/exit_close.xpm"
-# define PLAYER_LEFT_XPM	"../texute/player_left.xpm"
-# define PLAYER_RIGHT_XPM	"../texute/player_right.xpm"
-# define PLAYER_FRONT_XPM	"../texute/player_front.xpm"
-# define PLAYER_BACK_XPM	"../texute/player_back.xpm"
 
 typedef struct s_image
 {
