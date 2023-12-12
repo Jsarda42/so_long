@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliensarda <juliensarda@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:40:38 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/10 11:26:55 by juliensarda      ###   ########.fr       */
+/*   Updated: 2023/12/12 13:48:17 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main()
+int	main(void)
 {
-	t_game *game;
+	t_game	game;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-		error_message("Malloc failed allocation", game);
-	init_new_window(game);
-	init_texture(game);
-	mlx_loop(game->mlx_ptr);
+	init_map(&game);
+	init_values(&game);
+	init_new_window(&game);
+	init_texture(&game);
+	render_map(&game);
+	mlx_loop(game.mlx_ptr);
 }
