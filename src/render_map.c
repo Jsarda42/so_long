@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:56:08 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/12 14:17:08 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/12 16:36:22 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	define_texture(t_game *game, int y, int x)
 	parameter = game->map.map_tab[y][x];
 	if (parameter == WALL)
 		render_texture(game, game->wall, y, x);
-	else if (parameter == FLOOR)
-		render_texture(game, game->floor, y, x);
+	//else if (parameter == FLOOR)
+	//	render_texture(game, game->floor, y, x);
 	else if (parameter == COINS)
 	{
 		game->map.coins_count++;
