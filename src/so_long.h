@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:40:12 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/12 14:04:33 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/13 17:23:42 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <fcntl.h>
 # include <stdlib.h>
 
@@ -42,50 +44,73 @@
 # define RIGHT 3
 # define LEFT 4
 
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+
+# define KEY_UP 65362
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_DOWN 65364
+
+# define KEY_Q 113
+# define KEY_ESC 65307
+
+typedef struct s_position
+{
+	int			x;
+	int			y;
+}				t_position;
+
 typedef enum e_bool
 {
 	false,
 	true
-}			t_bool;
+}				t_bool;
 
 typedef struct s_image
 {
-	void	*xpm_ptr;
-	int		x;
-	int		y;
-}			t_image;
+	void		*xpm_ptr;
+	int			x;
+	int			y;
+}				t_image;
 
 typedef struct s_map
 {
-	char	**map_tab;
-	int		columns;
-	int		rows;
-	int		coins_count;
-}			t_map;
+	char		**map_tab;
+	t_position	player;
+	int	players;
+	int			columns;
+	int			rows;
+	int			coins_count;
+}				t_map;
 
 typedef struct s_game
 {
-	void	*win_ptr;
-	void	*mlx_ptr;
+	void		*win_ptr;
+	void		*mlx_ptr;
+	int			player_texture;
 	int		player_move;
-	t_map	map;
-	t_image	wall;
-	t_image	coins;
-	t_image	player_left;
-	t_image	player_right;
-	t_image	player_top;
-	t_image	player_back;
-	t_image	exit_open;
-	t_image	exit_close;
-	t_image	floor;
-}			t_game;
+	t_map		map;
+	t_image		wall;
+	t_image		coins;
+	t_image		player_left;
+	t_image		player_right;
+	t_image		player_top;
+	t_image		player_back;
+	t_image		exit_open;
+	t_image		exit_close;
+	t_image		floor;
+}				t_game;
 
-void		init_new_window(t_game *game);
-void		error_message(char *message, t_game *game);
-void		init_texture(t_game *game);
-void		init_map(t_game *game);
-void		render_map(t_game *game);
-char		*ft_strappend(char **s1, const char *s2);
-void	init_values(t_game *game);
+void			init_new_window(t_game *game);
+void			error_message(char *message, t_game *game);
+void			init_texture(t_game *game);
+void			init_map(t_game *game);
+void			render_map(t_game *game);
+void			init_values(t_game *game);
+int	handle_input(int keysym, t_game *game);
+void	count_map_parameters(t_game *game);
 
 #endif

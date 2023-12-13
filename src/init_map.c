@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:47:02 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/12 17:49:37 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/13 14:17:11 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,30 @@ void	init_map(t_game *game)
 {
 	int		fd;
 	char	*line;
-	char	*map;
+	char	*trimmed_line;
+	int		i;
 
 	fd = open("/home/jsarda/Desktop/so_long/map/map.ber", O_RDONLY);
 	if (fd == -1)
 		error_message("Could not open the map, make sure the map exist", game);
-	map = ft_strdup("");
-	if (!map)
-		error_message("failed to strdup", game);
-	game->map.rows = 0;
+	game->map.map_tab = malloc(sizeof(char *) * game->map.rows);
+	if (!game->map.map_tab)
+	{
+		free(game->map.map_tab);
+		error_message("Memory allocation failed", game);
+	}
+	i = -1;
 	while (true)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		map = ft_strtrim(line, "\n");
-		game->map.rows++;
-		game->map.map_tab = realloc(game->map.map_tab, sizeof(char *)
-				* game->map.rows);
-		if (game->map.map_tab == NULL)
-			error_message("Memory allocation failed", game);
-		game->map.map_tab[game->map.rows - 1] = ft_strdup(map);
-		free(line);
-		free(map);
+		trimmed_line = ft_strtrim(line, "\n");
+		if (++i < game->map.rows)
+		{
+			game->map.map_tab[i] = ft_strdup(trimmed_line);
+			game->map.columns = (int)ft_strlen(trimmed_line);
+		}
 	}
 	close(fd);
 }

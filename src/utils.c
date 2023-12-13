@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 10:52:49 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/12 16:31:02 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/13 16:40:57 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,28 @@ void	error_message(char *message, t_game *game)
 	exit(EXIT_FAILURE);
 }
 
+void	get_rows_len(t_game *game)
+{
+	int		fd;
+	char	*line;
+
+	fd = open("/home/jsarda/Desktop/so_long/map/map.ber", O_RDONLY);
+	if (fd == -1)
+		error_message("Could not open the map, make sure the map exist", game);
+	game->map.rows = 0;
+	while (true)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		game->map.rows++;
+	}
+	close(fd);
+}
+
 void	init_values(t_game *game)
 {
-	game->map.columns = ft_strlen((game->map.map_tab[0]));
-	ft_printf("this is the len of my columns : %d\n", game->map.columns);
-	game->map.coins_count = 0;
+	get_rows_len(game);
 	game->player_move = RIGHT;
+	game->map.coins_count = 0;
 }

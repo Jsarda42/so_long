@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 00:14:24 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/12 16:35:54 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/13 16:40:49 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void	init_texture(t_game *game)
 	game->player_top = new_texture(mlx, PLAYER_TOP_XPM, game);
 	game->player_back = new_texture(mlx, PLAYER_BACK_XPM, game);
 	game->exit_open = new_texture(mlx, EXIT_OPEN_XPM, game);
-	//game->floor = new_texture(mlx, FLOOR_XPM, game);
+	game->floor = new_texture(mlx, FLOOR_XPM, game);
 	game->exit_close = new_texture(mlx, EXIT_CLOSE_XPM, game);
 }
