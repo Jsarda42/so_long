@@ -6,12 +6,14 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 00:14:24 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/13 16:40:49 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/14 08:33:24 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+// function to initialise a new window
+// the size will depend on the texture size from the map
 void	init_new_window(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
@@ -29,6 +31,7 @@ void	init_new_window(t_game *game)
 	}
 }
 
+// function to add new texture with mlx function xpm to image
 t_image	new_texture(void *mlx, char *path, t_game *game)
 {
 	t_image	texture;
@@ -39,6 +42,7 @@ t_image	new_texture(void *mlx, char *path, t_game *game)
 	return (texture);
 }
 
+// function to initialise the texture depending o the parameter of the map
 void	init_texture(t_game *game)
 {
 	void	*mlx;
@@ -50,6 +54,10 @@ void	init_texture(t_game *game)
 	game->player_left = new_texture(mlx, PLAYER_LEFT_XPM, game);
 	game->player_top = new_texture(mlx, PLAYER_TOP_XPM, game);
 	game->player_back = new_texture(mlx, PLAYER_BACK_XPM, game);
+	game->ghost_right = new_texture(mlx, GHOST_RIGHT_XPM, game);
+	game->ghost_left = new_texture(mlx, GHOST_LEFT_XPM, game);
+	game->ghost_top = new_texture(mlx, GHOST_TOP_XPM, game);
+	game->ghost_back = new_texture(mlx, GHOST_BACK_XPM, game);
 	game->exit_open = new_texture(mlx, EXIT_OPEN_XPM, game);
 	game->floor = new_texture(mlx, FLOOR_XPM, game);
 	game->exit_close = new_texture(mlx, EXIT_CLOSE_XPM, game);

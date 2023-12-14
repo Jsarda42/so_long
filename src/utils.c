@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 10:52:49 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/13 16:40:57 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/14 10:55:34 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	get_rows_len(t_game *game)
 void	init_values(t_game *game)
 {
 	get_rows_len(game);
-	game->player_move = RIGHT;
+	game->player_texture = RIGHT;
+	game->ghost_texture = RIGHT;
 	game->map.coins_count = 0;
 }

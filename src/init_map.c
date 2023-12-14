@@ -6,12 +6,14 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:47:02 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/13 14:17:11 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/14 07:51:05 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+
+// need to adds arguments instead of path
 void	init_map(t_game *game)
 {
 	int		fd;
@@ -43,3 +45,6 @@ void	init_map(t_game *game)
 	}
 	close(fd);
 }
+
+// need a function to check the arguments validity
+// make parsing for the map
