@@ -6,7 +6,7 @@
 #    By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 19:25:54 by juliensarda       #+#    #+#              #
-#    Updated: 2023/12/14 08:50:16 by jsarda           ###   ########.fr        #
+#    Updated: 2023/12/15 15:36:12 by jsarda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRCS_DIR = ./src/
-SRCS = $(addprefix $(SRCS_DIR),handle_ghost.c check_map.c render_map.c main.c init_game.c utils.c init_map.c handle_input.c)
+SRCS = $(addprefix $(SRCS_DIR), check_map.c render_map.c main.c init_game.c utils.c init_map.c handle_input.c)
 OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ./libft
 MLX_DIR = ./mlx

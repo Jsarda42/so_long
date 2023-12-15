@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:56:08 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/14 11:21:42 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/15 16:04:21 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,6 @@ void	render_texture(t_game *game, t_image texture, int rows, int columns)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, texture.xpm_ptr,
 		columns * texture.y, rows * texture.x);
-}
-
-void	print_movements(t_game *game)
-{
-	char	*movements;
-	char	*phrase;
-
-	movements = ft_itoa(game->move_count);
-	phrase = ft_strjoin("Movements : ", movements);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, 40, 20, 0xFFFFFF, phrase);
-	free(movements);
-	free(phrase);
 }
 
 void	render_player(t_game *game, int y, int x)
@@ -53,6 +41,7 @@ void	render_ghost(t_game *game, int y, int x)
 	if (game->ghost_texture == BACK)
 		render_texture(game, game->ghost_back, y, x);
 }
+
 void	define_texture(t_game *game, int y, int x)
 {
 	char	parameter;

@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:40:12 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/14 10:54:00 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/15 16:28:05 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <time.h>
 
 # define WALL_XPM "/home/jsarda/Desktop/so_long/assets/wall.xpm"
 # define COINS_XPM "/home/jsarda/Desktop/so_long/assets/coins.xpm"
@@ -91,6 +92,7 @@ typedef struct s_map
 	int			columns;
 	int			rows;
 	int			coins_count;
+	int			exit;
 }				t_map;
 
 typedef struct s_game
@@ -117,13 +119,13 @@ typedef struct s_game
 }				t_game;
 
 void			init_new_window(t_game *game);
-void			error_message(char *message, t_game *game);
+void			error_message(char *message);
 void			init_texture(t_game *game);
 void			init_map(t_game *game);
 void			render_map(t_game *game);
 void			init_values(t_game *game);
 int				handle_input(int keysym, t_game *game);
-void			count_map_parameters(t_game *game);
-int	handle_ghost_move(t_game *game);
+void	check_map(t_game *game);
+void	print_movements(t_game *game);
 
 #endif

@@ -6,14 +6,12 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:47:02 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/14 07:51:05 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/15 16:28:50 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-// need to adds arguments instead of path
 void	init_map(t_game *game)
 {
 	int		fd;
@@ -23,13 +21,10 @@ void	init_map(t_game *game)
 
 	fd = open("/home/jsarda/Desktop/so_long/map/map.ber", O_RDONLY);
 	if (fd == -1)
-		error_message("Could not open the map, make sure the map exist", game);
+		error_message("Could not open the map, make sure the map exist");
 	game->map.map_tab = malloc(sizeof(char *) * game->map.rows);
 	if (!game->map.map_tab)
-	{
-		free(game->map.map_tab);
-		error_message("Memory allocation failed", game);
-	}
+		error_message("Memory allocation failed");
 	i = -1;
 	while (true)
 	{
@@ -45,6 +40,3 @@ void	init_map(t_game *game)
 	}
 	close(fd);
 }
-
-// need a function to check the arguments validity
-// make parsing for the map
