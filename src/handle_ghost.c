@@ -6,11 +6,12 @@
 /*   By: juliensarda <juliensarda@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 19:32:57 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/16 10:52:01 by juliensarda      ###   ########.fr       */
+/*   Updated: 2023/12/17 11:32:41 by juliensarda      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 void set_ghost_texture(t_game *game, int new_x, int new_y) {
     int last_x = game->map.ghost.x;
     int last_y = game->map.ghost.y;
