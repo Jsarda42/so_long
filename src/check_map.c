@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juliensarda <juliensarda@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 07:21:11 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/15 16:42:36 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/15 20:09:00 by juliensarda      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ void	count_map_parameters(t_game *game)
 				game->map.players++;
 				game->map.player.x = x;
 				game->map.player.y = y;
+			}
+			else if (game->map.map_tab[y][x] == GHOST)
+			{
+				game->map.ghosts++;
+				game->map.ghost.x = x;
+				game->map.ghost.y = y;
 			}
 			else if (game->map.map_tab[y][x] == COINS)
 				game->map.coins_count++;
