@@ -6,15 +6,16 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 10:52:49 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/20 10:53:01 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 16:40:10 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error_failure_message(char *message)
+void	error_failure_message(char *message,t_game *game)
 {
 	ft_printf("%s\n", message);
+	free_all(game);
 	exit(EXIT_FAILURE);
 }
 
@@ -54,6 +55,7 @@ void	init_values(t_game *game)
 	game->map.exit = 0;
 	game->move_count = 0;
 	game->map.players = 0;
+	game->mlx_ptr = NULL;
 	game->map.ghosts = 0;
 }
 

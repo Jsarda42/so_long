@@ -6,15 +6,31 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 00:14:24 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/20 09:52:34 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 16:30:48 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	check_screen_size(t_game *game)
+{
+	int	screen_height;
+	int	screen_width;
+
+	screen_height = 0;
+	screen_width = 0;
+	mlx_get_screen_size(game->mlx_ptr, &screen_width, &screen_height);
+	if (game->map.rows * TEXTURE_HEIGHT > screen_height || game->map.columns
+		* TEXTURE_HEIGHT > screen_width)
+	{
+		error_failure_message("The map is too big compare to the screen size");
+	}
+}
+
 void	init_new_window(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
+	check_screen_size(game);
 	if (!game->mlx_ptr)
 	{
 		mlx_destroy_display(game->mlx_ptr);
@@ -29,7 +45,6 @@ void	init_new_window(t_game *game)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 		mlx_destroy_display(game->mlx_ptr);
 		free_map(game);
-		free(game->mlx_ptr);
 		error_failure_message("Fail to open the new window");
 	}
 }

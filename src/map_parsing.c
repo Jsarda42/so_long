@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:16:14 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/20 10:42:32 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 15:28:02 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,10 @@ void	set_param_rules(t_game *game)
 	{
 		free_map(game);
 		error_failure_message("It must be only 1 player");
+	}
+		if (game->map.ghosts != 1)
+	{
+		free_map(game);
+		error_failure_message("It must be only 1 ghost");
 	}
 }

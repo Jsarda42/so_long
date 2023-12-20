@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:40:12 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/20 10:53:10 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 14:08:48 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct s_game
 void			init_new_window(t_game *game);
 void			error_failure_message(char *message);
 void			init_texture(t_game *game);
-void			init_map(t_game *game);
+void			init_map(t_game *game, char *argv);
 int				render_map(t_game *game);
 void			init_values(t_game *game);
 int				handle_input(int keysym, t_game *game);

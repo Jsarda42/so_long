@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:40:38 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/20 10:50:11 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 14:20:01 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	check_command_line_arguments(argc, argv);
 	init_values(&game);
-	init_map(&game);
+	init_map(&game, argv[1]);
 	check_map(&game);
 	init_new_window(&game);
 	init_texture(&game);

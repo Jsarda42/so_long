@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 08:30:28 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/20 09:56:22 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 16:37:22 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ void	free_map(t_game *game)
 
 void	free_all(t_game *game)
 {
-	free_map(game);
-	destroy_textures(game);
-	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	mlx_destroy_display(game->mlx_ptr);
-	free(game->mlx_ptr);
+	if (game->map.map_tab)
+		free_map(game);
+	if (game->mlx_ptr)
+		destroy_textures(game);
+	// mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	// mlx_destroy_display(game->mlx_ptr);
+	// free(game->mlx_ptr);
 }
 
 void	ft_free(char **str)

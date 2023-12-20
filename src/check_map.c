@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 07:21:11 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/20 09:29:09 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 16:39:50 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	count_map_parameters(t_game *game)
 		x = -1;
 		while (++x < game->map.columns)
 		{
-			if (!ft_strchr("CEP01G", game->map.map_tab[y][x]))
+			if (ft_strchr("CEP01G", game->map.map_tab[y][x]))
 			{
-				free_map(game);
+				free_all(game);
 				error_failure_message("Invalid map parameter only CEP01");
 			}
 			unit_count_param(game, y, x);
@@ -61,11 +61,8 @@ void	check_rows(t_game *game)
 	while (i < game->map.rows)
 	{
 		if (game->map.map_tab[i][0] != WALL)
-		{
-			free_map(game);
 			error_failure_message("Invalid Map the map need to be \
 			sourounded by walls");
-		}
 		else if (game->map.map_tab[i][game->map.columns - 1] != WALL)
 		{
 			free_map(game);
@@ -103,6 +100,11 @@ void	check_map(t_game *game)
 {
 	check_columns(game);
 	check_rows(game);
+	if (game->map.rows == game->map.columns)
+	{
+		free_map(game);
+		error_failure_message("The map must be a rectangle");
+	}
 	count_map_parameters(game);
 	set_param_rules(game);
 	is_path_available(game);

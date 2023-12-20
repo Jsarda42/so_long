@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:47:02 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/20 10:34:54 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 14:25:53 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	allocate_map_tab(t_game *game, int fd)
 	}
 }
 
-void	init_map(t_game *game)
+void	init_map(t_game *game, char *argv)
 {
 	int	fd;
 
-	fd = open("/home/jsarda/Desktop/so_long/map/map.ber", O_RDONLY);
+	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		error_failure_message("Could not open the map make sure the map exist");
 	allocate_map_tab(game, fd);
