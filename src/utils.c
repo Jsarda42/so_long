@@ -6,13 +6,13 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 10:52:49 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/15 16:28:19 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 10:53:01 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error_message(char *message)
+void	error_failure_message(char *message)
 {
 	ft_printf("%s\n", message);
 	exit(EXIT_FAILURE);
@@ -25,24 +25,36 @@ void	get_rows_len(t_game *game)
 
 	fd = open("/home/jsarda/Desktop/so_long/map/map.ber", O_RDONLY);
 	if (fd == -1)
-		error_message("Could not open the map, make sure the map exist");
+		error_failure_message("Could not open the map, \
+		make sure the map exist");
 	game->map.rows = 0;
 	while (true)
 	{
 		line = get_next_line(fd);
 		if (!line)
+		{
+			free(line);
 			break ;
+		}
 		game->map.rows++;
+		free(line);
 	}
 	close(fd);
 }
 
 void	init_values(t_game *game)
 {
+	game->map.map_tab = NULL;
+	game->map.rows = 0;
 	get_rows_len(game);
+	game->map_alloc = false;
 	game->player_texture = RIGHT;
 	game->ghost_texture = RIGHT;
 	game->map.coins_count = 0;
+	game->map.exit = 0;
+	game->move_count = 0;
+	game->map.players = 0;
+	game->map.ghosts = 0;
 }
 
 void	print_movements(t_game *game)
@@ -55,4 +67,19 @@ void	print_movements(t_game *game)
 	mlx_string_put(game->mlx_ptr, game->win_ptr, 40, 20, 0xFFFFFF, phrase);
 	free(movements);
 	free(phrase);
+}
+
+void	check_command_line_arguments(int argc, char **argv)
+{
+	int	map_parameter_len;
+
+	if (argc > 2)
+		error_failure_message("Too many arguments \
+		(It should be only two).");
+	if (argc < 2)
+		error_failure_message("The Map file is missing.");
+	map_parameter_len = ft_strlen(argv[1]);
+	if (!ft_strnstr(&argv[1][map_parameter_len - 4], ".ber", 4))
+		error_failure_message("Map file extention is wrong \
+		(It should be .ber).");
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juliensarda <juliensarda@student.42.fr>    +#+  +:+       +#+         #
+#    By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 19:25:54 by juliensarda       #+#    #+#              #
-#    Updated: 2023/12/15 19:38:03 by juliensarda      ###   ########.fr        #
+#    Updated: 2023/12/19 15:40:28 by jsarda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRCS_DIR = ./src/
-SRCS = $(addprefix $(SRCS_DIR), handle_ghost.c check_map.c render_map.c main.c init_game.c utils.c init_map.c handle_input.c)
+SRCS = $(addprefix $(SRCS_DIR),set_ghost_texture.c map_parsing.c close_game.c free_mem.c handle_ghost.c check_map.c render_map.c main.c init_game.c utils.c init_map.c handle_input.c)
 OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ./libft
 MLX_DIR = ./mlx
@@ -44,7 +44,7 @@ $(MLX_LIB):
 	@make -C $(MLX_DIR)
 
 .c.o:
-	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
+	$(CC) $(CFLAGS) -g3 -c -o $@ $< $(INCLUDES)
 
 clean:
 	@make clean -C $(LIBFT_DIR)

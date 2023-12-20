@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:40:12 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/15 16:28:05 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/20 10:53:10 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define EXIT 'E'
 # define PLAYER 'P'
 # define GHOST 'G'
+# define VISITED 'V'
 
 # define TEXTURE_WIDTH 32
 # define TEXTURE_HEIGHT 32
@@ -62,6 +63,8 @@
 
 # define KEY_Q 113
 # define KEY_ESC 65307
+
+# define MOVEMENT_INTERVAL 0.4
 
 typedef struct s_position
 {
@@ -102,6 +105,7 @@ typedef struct s_game
 	int			player_texture;
 	int			move_count;
 	int			ghost_texture;
+	t_bool		map_alloc;
 	t_map		map;
 	t_image		wall;
 	t_image		coins;
@@ -119,13 +123,25 @@ typedef struct s_game
 }				t_game;
 
 void			init_new_window(t_game *game);
-void			error_message(char *message);
+void			error_failure_message(char *message);
 void			init_texture(t_game *game);
 void			init_map(t_game *game);
-void			render_map(t_game *game);
+int				render_map(t_game *game);
 void			init_values(t_game *game);
 int				handle_input(int keysym, t_game *game);
-void	check_map(t_game *game);
-void	print_movements(t_game *game);
+void			check_map(t_game *game);
+void			print_movements(t_game *game);
+int				move_ghost(t_game *game);
+void			free_all(t_game *game);
+int				close_game(t_game *game);
+void			free_map(t_game *game);
+int				victory(t_game *game);
+int				loose(t_game *game);
+void			is_path_available(t_game *game);
+void			set_param_rules(t_game *game);
+void			set_ghost_texture(t_game *game, int new_x, int new_y);
+void			destroy_textures(t_game *game);
+void			ft_free(char **str);
+void			check_command_line_arguments(int argc, char **argv);
 
 #endif

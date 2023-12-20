@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:56:08 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/15 16:04:21 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/19 14:51:39 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	define_texture(t_game *game, int y, int x)
 		render_ghost(game, y, x);
 }
 
-void	render_map(t_game *game)
+int	render_map(t_game *game)
 {
 	int	y;
 	int	x;
@@ -83,4 +83,5 @@ void	render_map(t_game *game)
 		y++;
 	}
 	print_movements(game);
+	return (0);
 }

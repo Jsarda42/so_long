@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:53:55 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/15 16:51:15 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/18 11:45:48 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	player_move(t_game *game, int new_y, int new_x, int player_texture)
 		game->map.map_tab[new_y][new_x] = PLAYER;
 		game->map.map_tab[last_y][last_x] = FLOOR;
 		move_player(game, new_x, new_y);
+		victory(game);
 	}
 	else if (game->map.map_tab[new_y][new_x] == FLOOR
 		|| game->map.map_tab[new_y][new_x] == COINS)
@@ -43,7 +44,7 @@ void	player_move(t_game *game, int new_y, int new_x, int player_texture)
 		game->map.map_tab[new_y][new_x] = PLAYER;
 	}
 	else if (game->map.map_tab[new_y][new_x] == GHOST)
-		ft_printf("you loose");
+		loose(game);
 	render_map(game);
 }
 
@@ -58,6 +59,6 @@ int	handle_input(int keysym, t_game *game)
 	if (keysym == KEY_RIGHT || keysym == KEY_D)
 		player_move(game, game->map.player.y, game->map.player.x + 1, RIGHT);
 	if (keysym == KEY_ESC || keysym == KEY_Q)
-		ft_printf("gameclose");
+		close_game(game);
 	return (0);
 }
