@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:40:12 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/20 14:08:48 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/26 10:30:05 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_game
 	t_map		map;
 	t_image		wall;
 	t_image		coins;
+	int			texture;
 	t_image		player_left;
 	t_image		player_right;
 	t_image		player_top;
@@ -129,6 +130,7 @@ void			init_map(t_game *game, char *argv);
 int				render_map(t_game *game);
 void			init_values(t_game *game);
 int				handle_input(int keysym, t_game *game);
+void			free_string_2(char **str);
 void			check_map(t_game *game);
 void			print_movements(t_game *game);
 int				move_ghost(t_game *game);
@@ -141,7 +143,7 @@ void			is_path_available(t_game *game);
 void			set_param_rules(t_game *game);
 void			set_ghost_texture(t_game *game, int new_x, int new_y);
 void			destroy_textures(t_game *game);
-void			ft_free(char **str);
+void			free_string(char **str, int i);
 void			check_command_line_arguments(int argc, char **argv);
 
 #endif

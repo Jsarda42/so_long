@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:47:02 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/20 14:25:53 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/22 13:59:24 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	malloc_error_2(t_game *game, char *trimmed_line, int i)
 	free(game->map.map_tab[i]);
 	free(game->map.map_tab);
 	free(trimmed_line);
-	error_failure_message("Fail to strdup game->map.map_tab[i]");
+	error_failure_message("Memory allocation failed in init_map 2");
 }
 
 static void	malloc_game_tab_3(t_game *game)
 {
-	game->map.map_tab = malloc(sizeof(char *) * game->map.rows);
+	game->map.map_tab = malloc(sizeof(char *) * (game->map.rows + 1));
 	if (!game->map.map_tab)
 	{
 		free(game->map.map_tab);
@@ -37,6 +37,7 @@ static void	malloc_game_tab_3(t_game *game)
 	}
 }
 
+// get_next_line(-72) the leak from malloc 1 come from gnl
 void	allocate_map_tab(t_game *game, int fd)
 {
 	int		i;

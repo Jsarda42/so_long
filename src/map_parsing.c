@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:16:14 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/20 15:28:02 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/22 14:16:32 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	**copy_map(t_game *game)
 	temp = malloc(sizeof(char *) * (game->map.rows + 1));
 	if (!temp)
 	{
-		free_map(game);
 		free(temp);
 		error_failure_message("failed to malloc the temp in map parsing");
 	}
@@ -42,8 +41,6 @@ char	**copy_map(t_game *game)
 		temp[r] = ft_strdup(game->map.map_tab[r]);
 		if (!temp[r])
 		{
-			ft_free(temp);
-			free_map(game);
 			error_failure_message("failed to malloc the temp in map parsing");
 		}
 		r++;
@@ -57,6 +54,7 @@ void	check_map_elements(char **temp, t_game *game)
 	int	y;
 	int	x;
 
+	(void)game;
 	y = 0;
 	while (temp[y])
 	{
@@ -66,8 +64,6 @@ void	check_map_elements(char **temp, t_game *game)
 			if (temp[y][x] == COINS || temp[y][x] == EXIT)
 			{
 				ft_printf("wrong map format\n");
-				free_map(game);
-				ft_free(temp);
 				exit(EXIT_FAILURE);
 			}
 			x++;
@@ -83,35 +79,35 @@ void	is_path_available(t_game *game)
 	temp = copy_map(game);
 	if (!temp)
 	{
-		free(temp);
-		free_map(game);
+		free_all(game);
+		free_string_2(temp);
 		error_failure_message("failed to malloc the temp in map parsing");
 	}
 	floodfill(temp, game->map.player.x, game->map.player.y);
 	check_map_elements(temp, game);
-	ft_free(temp);
+	free_string_2(temp);
 }
 
 void	set_param_rules(t_game *game)
 {
 	if (game->map.coins_count == 0)
 	{
-		free_map(game);
+		free_all(game);
 		error_failure_message("Error no coins on the map");
 	}
 	else if (game->map.exit == 0)
 	{
-		free_map(game);
+		free_all(game);
 		error_failure_message("Error no exit on the map");
 	}
 	if (game->map.players != 1)
 	{
-		free_map(game);
+		free_all(game);
 		error_failure_message("It must be only 1 player");
 	}
-		if (game->map.ghosts != 1)
+	if (game->map.ghosts != 1)
 	{
-		free_map(game);
+		free_all(game);
 		error_failure_message("It must be only 1 ghost");
 	}
 }

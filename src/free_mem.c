@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 08:30:28 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/20 16:37:22 by jsarda           ###   ########.fr       */
+/*   Updated: 2023/12/26 10:29:38 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,21 @@ void	destroy_textures(t_game *game)
 	mlx_destroy_image(game->mlx_ptr, game->ghost_back.xpm_ptr);
 }
 
-void	free_map(t_game *game)
+void	free_string(char **str, int i)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (i < game->map.rows)
-		free(game->map.map_tab[i++]);
-	if (game->map.map_tab)
-		free(game->map.map_tab);
+	j = 0;
+	while (i > j)
+	{
+		free(str[j]);
+		j++;
+	}
+	free(str);
+	str = NULL;
 }
 
-void	free_all(t_game *game)
-{
-	if (game->map.map_tab)
-		free_map(game);
-	if (game->mlx_ptr)
-		destroy_textures(game);
-	// mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	// mlx_destroy_display(game->mlx_ptr);
-	// free(game->mlx_ptr);
-}
-
-void	ft_free(char **str)
+void	free_string_2(char **str)
 {
 	int	i;
 
@@ -62,4 +54,22 @@ void	ft_free(char **str)
 		i++;
 	}
 	free(str);
+}
+
+void	free_all(t_game *game)
+{
+	int	i;
+
+	i = game->map.rows;
+	if (game->map.map_tab)
+		free_string(game->map.map_tab, i);
+	if (game->texture)
+		destroy_textures(game);
+	if (game->win_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->mlx_ptr)
+	{
+		mlx_destroy_display(game->mlx_ptr);
+		free(game->mlx_ptr);
+	}
 }
