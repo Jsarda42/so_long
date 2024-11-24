@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:53:55 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/20 15:26:20 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/01/10 10:59:39 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	player_move(t_game *game, int new_y, int new_x, int player_texture)
 	if (game->map.map_tab[new_y][new_x] == EXIT && game->map.coins_count == 0)
 	{
 		game->map.map_tab[new_y][new_x] = PLAYER;
-		game->map.map_tab[last_y][last_x] = FLOOR;
 		move_player(game, new_x, new_y);
 		victory(game);
 	}
@@ -43,8 +42,6 @@ void	player_move(t_game *game, int new_y, int new_x, int player_texture)
 		move_player(game, new_x, new_y);
 		game->map.map_tab[new_y][new_x] = PLAYER;
 	}
-	else if (game->map.map_tab[new_y][new_x] == GHOST)
-		loose(game);
 	render_map(game);
 }
 

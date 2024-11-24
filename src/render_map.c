@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:56:08 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/22 17:16:23 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/01/10 10:57:13 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@ void	render_player(t_game *game, int y, int x)
 		render_texture(game, game->player_back, y, x);
 }
 
-void	render_ghost(t_game *game, int y, int x)
-{
-	if (game->ghost_texture == TOP)
-		render_texture(game, game->ghost_top, y, x);
-	if (game->ghost_texture == LEFT)
-		render_texture(game, game->ghost_left, y, x);
-	if (game->ghost_texture == RIGHT)
-		render_texture(game, game->ghost_right, y, x);
-	if (game->ghost_texture == BACK)
-		render_texture(game, game->ghost_back, y, x);
-}
-
 void	define_texture(t_game *game, int y, int x)
 {
 	char	parameter;
@@ -62,8 +50,6 @@ void	define_texture(t_game *game, int y, int x)
 	}
 	else if (parameter == PLAYER)
 		render_player(game, y, x);
-	else if (parameter == GHOST)
-		render_ghost(game, y, x);
 }
 
 int	render_map(t_game *game)

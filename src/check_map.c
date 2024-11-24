@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 07:21:11 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/22 15:11:40 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/01/10 11:03:51 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ static void	unit_count_param(t_game *game, int y, int x)
 		game->map.players++;
 		game->map.player.x = x;
 		game->map.player.y = y;
-	}
-	if (game->map.map_tab[y][x] == GHOST)
-	{
-		game->map.ghosts++;
-		game->map.ghost.x = x;
-		game->map.ghost.y = y;
 	}
 }
 
@@ -39,7 +33,7 @@ void	count_map_parameters(t_game *game)
 		x = -1;
 		while (++x < game->map.columns)
 		{
-			if (!ft_strchr("CEP01G", game->map.map_tab[y][x]))
+			if (!ft_strchr("CEP01", game->map.map_tab[y][x]))
 			{
 				free_all(game);
 				error_failure_message("Invalid map parameter only CEP01");
@@ -103,11 +97,6 @@ void	check_map(t_game *game)
 {
 	check_columns(game);
 	check_rows(game);
-	if (game->map.rows == game->map.columns)
-	{
-		free_all(game);
-		error_failure_message("The map must be a rectangle");
-	}
 	count_map_parameters(game);
 	set_param_rules(game);
 	is_path_available(game);

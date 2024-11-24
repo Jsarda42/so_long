@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:16:14 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/22 14:16:32 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/01/10 10:56:47 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	floodfill(char **map, int x, int y)
 {
-	if (map[y][x] && (map[y][x] != WALL && map[y][x] != VISITED))
+	if (map[y][x] && (map[y][x] != WALL && map[y][x] != VISITED
+			&& map[y][x] != EXIT))
 	{
 		map[y][x] = VISITED;
 		floodfill(map, x + 1, y);
@@ -22,6 +23,8 @@ void	floodfill(char **map, int x, int y)
 		floodfill(map, x - 1, y);
 		floodfill(map, x, y - 1);
 	}
+	if (map[y][x] == EXIT)
+		map[y][x] = VISITED;
 }
 
 char	**copy_map(t_game *game)
@@ -63,7 +66,9 @@ void	check_map_elements(char **temp, t_game *game)
 		{
 			if (temp[y][x] == COINS || temp[y][x] == EXIT)
 			{
-				ft_printf("wrong map format\n");
+				ft_printf("cannot access coins or exit\n");
+				free_string_2(temp);
+				free_all(game);
 				exit(EXIT_FAILURE);
 			}
 			x++;
@@ -95,7 +100,7 @@ void	set_param_rules(t_game *game)
 		free_all(game);
 		error_failure_message("Error no coins on the map");
 	}
-	else if (game->map.exit == 0)
+	else if (game->map.exit != 1)
 	{
 		free_all(game);
 		error_failure_message("Error no exit on the map");
@@ -104,10 +109,5 @@ void	set_param_rules(t_game *game)
 	{
 		free_all(game);
 		error_failure_message("It must be only 1 player");
-	}
-	if (game->map.ghosts != 1)
-	{
-		free_all(game);
-		error_failure_message("It must be only 1 ghost");
 	}
 }

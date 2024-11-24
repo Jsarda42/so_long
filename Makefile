@@ -6,7 +6,7 @@
 #    By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 19:25:54 by juliensarda       #+#    #+#              #
-#    Updated: 2023/12/19 15:40:28 by jsarda           ###   ########.fr        #
+#    Updated: 2024/01/10 11:07:55 by jsarda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,10 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRCS_DIR = ./src/
-SRCS = $(addprefix $(SRCS_DIR),set_ghost_texture.c map_parsing.c close_game.c free_mem.c handle_ghost.c check_map.c render_map.c main.c init_game.c utils.c init_map.c handle_input.c)
+SRCS = $(addprefix $(SRCS_DIR),eod.c init_values.c check_rows_column.c map_parsing.c close_game.c free_mem.c check_map.c render_map.c main.c init_game.c utils.c init_map.c handle_input.c)
 OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ./libft
 MLX_DIR = ./mlx
-
-VALGRIND		= @valgrind --leak-check=full --show-leak-kinds=all \
---track-origins=yes --quiet --tool=memcheck --keep-debuginfo=yes
 
 UNAME := $(shell uname)
 
@@ -56,9 +53,6 @@ fclean: clean
 	rm -f $(MLX_LIB)
 
 re: fclean all
-
-run: ${NAME}
-		${VALGRIND} ./${NAME}
 
 .PHONY: all clean fclean re
 

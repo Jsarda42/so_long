@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 00:14:24 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/26 10:29:48 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/01/10 10:56:19 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	check_screen_size(t_game *game)
 void	init_new_window(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
-	check_screen_size(game);
 	if (!game->mlx_ptr)
 	{
 		free_all(game);
 		error_failure_message("Error getting the mlx-ptr");
 	}
+	check_screen_size(game);
 	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map.columns
 			* TEXTURE_WIDTH, game->map.rows * TEXTURE_HEIGHT, "42 so_long");
 	if (!game->win_ptr)
@@ -67,10 +67,6 @@ void	init_texture(t_game *game)
 	game->player_left = new_texture(game, game->mlx_ptr, PLAYER_LEFT_XPM);
 	game->player_top = new_texture(game, game->mlx_ptr, PLAYER_TOP_XPM);
 	game->player_back = new_texture(game, game->mlx_ptr, PLAYER_BACK_XPM);
-	game->ghost_right = new_texture(game, game->mlx_ptr, GHOST_RIGHT_XPM);
-	game->ghost_left = new_texture(game, game->mlx_ptr, GHOST_LEFT_XPM);
-	game->ghost_top = new_texture(game, game->mlx_ptr, GHOST_TOP_XPM);
-	game->ghost_back = new_texture(game, game->mlx_ptr, GHOST_BACK_XPM);
 	game->exit_open = new_texture(game, game->mlx_ptr, EXIT_OPEN_XPM);
 	game->floor = new_texture(game, game->mlx_ptr, FLOOR_XPM);
 	game->exit_close = new_texture(game, game->mlx_ptr, EXIT_CLOSE_XPM);

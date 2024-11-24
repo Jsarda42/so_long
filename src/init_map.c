@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:47:02 by jsarda            #+#    #+#             */
-/*   Updated: 2023/12/22 13:59:24 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/01/10 11:08:25 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,19 @@ void	malloc_error_2(t_game *game, char *trimmed_line, int i)
 
 static void	malloc_game_tab_3(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	game->map.map_tab = malloc(sizeof(char *) * (game->map.rows + 1));
 	if (!game->map.map_tab)
 	{
 		free(game->map.map_tab);
 		error_failure_message("Memory allocation failed in init_map");
+	}
+	while (i < (game->map.rows + 1))
+	{
+		game->map.map_tab[i] = 0;
+		i++;
 	}
 }
 
@@ -60,13 +68,13 @@ void	allocate_map_tab(t_game *game, int fd)
 			game->map.map_tab[i] = ft_strdup(trimmed_line);
 			if (!game->map.map_tab[i])
 				malloc_error_2(game, trimmed_line, i);
-			game->map.columns = (int)ft_strlen(trimmed_line);
+			check_r_c_parsing(game, trimmed_line, fd);
 			free(trimmed_line);
 		}
 	}
 }
 
-void	init_map(t_game *game, char *argv)
+void	init_map(t_game *game, const char *argv)
 {
 	int	fd;
 

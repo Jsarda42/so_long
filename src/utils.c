@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 10:52:49 by juliensarda       #+#    #+#             */
-/*   Updated: 2023/12/26 10:25:15 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:06:58 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	error_failure_message(char *message)
 	exit(EXIT_FAILURE);
 }
 
-void	get_rows_len(t_game *game)
+void	get_rows_len(t_game *game, char *argv)
 {
 	int		fd;
 	char	*line;
 
-	fd = open("/home/jsarda/Desktop/so_long/map/map.ber", O_RDONLY);
+	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		error_failure_message("Could not open the map, \
 		make sure the map exist");
@@ -40,24 +40,6 @@ void	get_rows_len(t_game *game)
 		free(line);
 	}
 	close(fd);
-}
-
-void	init_values(t_game *game)
-{
-	game->map.map_tab = NULL;
-	game->mlx_ptr = NULL;
-	game->win_ptr = NULL;
-	game->map.rows = 0;
-	game->texture = 0;
-	get_rows_len(game);
-	game->map_alloc = false;
-	game->player_texture = RIGHT;
-	game->ghost_texture = RIGHT;
-	game->map.coins_count = 0;
-	game->map.exit = 0;
-	game->move_count = 0;
-	game->map.players = 0;
-	game->map.ghosts = 0;
 }
 
 void	print_movements(t_game *game)
